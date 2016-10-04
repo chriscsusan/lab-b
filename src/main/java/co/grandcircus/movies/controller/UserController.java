@@ -77,5 +77,14 @@ public class UserController {
 		logger.info("POST /users/create -> redirect to /users");
 		return "redirect:/users";
 	}
+	
+	@RequestMapping(value = "/users/{id}/delete", method = RequestMethod.POST)
+	public String deleteUser(@PathVariable int id, Model model) {
+		userDao.deleteUser(id);
+		model.asMap().clear();
+
+		logger.info("POST /users/" + id + "/delete -> redirect to /users");
+		return "redirect:/users";
+	}
 
 }
